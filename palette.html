@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>palette</title>
+</head>
+<style>
+#palette{/*a supprimer*/
+	box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+	color: rgba(0,0,0,0.84);
+	width: 300px;
+	height: 300px;
+	background-color: #333;
+}
+.simplePalette{
+	box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+	color: rgba(0,0,0,0.84);
+	width: 300px;
+	height: 300px;
+	background-color: #333;
+}
+.box_palette
+{
+	display: inline-block;
+	line-height:0px;
+	width: 100px;
+	height: 100px;
+	float:left;
+	margin:0px;
+	padding: 0px;
+}
+.box_palette > h3
+{
+	color:rgb(50,50,50);
+	margin-left: 5px;
+	font-family: avenir,'avenir next',helvetica,arial,sans-serif;
+}
+.box_palette:hover h3
+{
+	color:white;
+}
+/*-----------*/
+.aqua{
+	background-color: #7FDBFF;
+}
+.teal{
+	background-color: #39CCCC;
+}
+.lime{
+	background-color: rgb(1, 255, 112);
+}
+.green{
+	background-color: #2ECC40;
+}
+.yellow{
+	background-color: #FFF14E;
+}
+.purple{
+	background-color: rgb(167, 161, 243);
+}
+.orange{
+	background-color: #FF851B;
+}
+.red{
+	background-color: #FF4136;
+}
+.pink{
+	background-color: rgb(255, 193, 250);
+}
+.silver{
+	background-color: #DDDDDD;
+}
+
+
+/* Shrink https://github.com/IanLunn/Hover/blob/master/css/hover.css*/
+.hvr-shrink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+</style>
+<body>
+	<div id="palette"><!--
+		--><div class="box_palette hvr-shrink aqua" onclick="palette.click('aqua')"><h3>Aqua</h3></div><!--
+		--><div class="box_palette hvr-shrink teal" onclick="palette.click('teal')"><h3>Teal</h3></div><!--
+		--><div class="box_palette hvr-shrink lime" onclick="palette.click('lime')"><h3>Lime</h3></div><!--
+		--><div class="box_palette hvr-shrink red" onclick="palette.click('red')"><h3>Red</h3></div><!--
+		--><div class="box_palette hvr-shrink orange" onclick="palette.click('orange')"><h3>Orange</h3></div><!--
+		--><div class="box_palette hvr-shrink yellow" onclick="palette.click('yellow')"><h3>Yellow</h3></div><!--
+		--><div class="box_palette hvr-shrink pink" onclick="palette.click('pink')"><h3>Pink</h3></div><!--
+		--><div class="box_palette hvr-shrink purple" onclick="palette.click('purple')"><h3>Purple</h3></div><!--
+		--><div class="box_palette hvr-shrink silver" onclick="palette.click('silver')"><h3>Silver</h3></div><!--
+--></div>
+	<!--<div>Inspired by <a href="http://clrs.cc/">clrs.cc</a> & <a href="http://www.materialpalette.com">materialpalette</a></div>-->
+<script type="text/javascript">
+function simplePalette(){
+	this.numberColor = "9";
+	this.palette = document.createElement("div");
+	this.palette.className = "simplePalette";
+	this.palette.innerHTML = '<div class="box_palette hvr-shrink aqua"><h3>Aqua</h3></div><div class="box_palette hvr-shrink teal"><h3>Teal</h3></div><div class="box_palette hvr-shrink lime"><h3>Lime</h3></div><div class="box_palette hvr-shrink red"><h3>Red</h3></div><div class="box_palette hvr-shrink orange"><h3>Orange</h3></div><div class="box_palette hvr-shrink yellow"><h3>Yellow</h3></div><div class="box_palette hvr-shrink pink"><h3>Pink</h3></div><div class="box_palette hvr-shrink purple"><h3>Purple</h3></div><div class="box_palette hvr-shrink silver"><h3>Silver</h3></div>';
+	//document.body.appendChild(this.palette);
+}
+	simplePalette.prototype.click = function(clr) {
+		console.log(clr);
+	};
+
+var palette = new simplePalette();
+
+//------------------
+//peut être pas très utile dans le projet, mais peut être utile prochainement ?
+
+function isInt(n) {
+   return n % 1 === 0;
+}
+
+function colorPalette()
+{
+	this.dim = 100;//px
+	this.numberColor = 0;
+	this.palette = document.createElement("div");
+		this.palette.className = "simplePalette"
+		this.palette.style.width = this.dim + "px";
+		this.palette.style.height = this.dim + "px";
+	this.boxes = [];
+	document.body.appendChild(this.palette);
+}
+colorPalette.prototype.addColor = function(color, name) {
+//new element
+	var box = document.createElement("div");
+//a bit of style
+	box.style.backgroundColor = color;
+	box.style.width = this.dim + "px";
+	box.style.height = this.dim + "px";
+	box.className = "box_palette hvr-shrink";
+//number of boxes + 1
+	this.numberColor++;
+//a bit of content
+	if(typeof name !== "undefined")
+		box.innerHTML = "<h3>"+name+"<h3>";
+	else
+		box.innerHTML = "<h3>"+color+"<h3>";
+//a bit of calcul to have a nice display
+	var sqrtSize = this.numberColor != 0 ? Math.sqrt(this.numberColor) : 0,
+			sqrtSizeFloor = Math.floor(sqrtSize);
+	console.log("sqrtSize",sqrtSize);
+	if(sqrtSizeFloor != 0 && this.numberColor != 1)
+	{
+		if(isInt(sqrtSize))
+		{
+			this.palette.style.width = sqrtSize*this.dim + "px";
+			this.palette.style.height = sqrtSize*this.dim + "px";
+		}
+		else
+		{
+			console.log("sqrt rééeeeeel", sqrtSizeFloor);
+			var nouvNombre = sqrtSizeFloor;
+			while(nouvNombre*sqrtSizeFloor<this.numberColor)
+			{
+				nouvNombre++;
+			}
+			this.palette.style.width = nouvNombre*this.dim + "px";
+			this.palette.style.height = sqrtSizeFloor*this.dim + "px";
+		}
+	}
+	//--------------
+	//add event(s)
+	box.addEventListener('click',function(){
+		this.click(color,name);//allow user to implement his own behavior
+	},false);
+//append to the palette
+	this.palette.appendChild(box);
+};
+
+var mapalette = new colorPalette();
+mapalette.addColor("#7FDBFF","Aqua");
+mapalette.addColor("#39CCCC","Teal");
+mapalette.addColor("#2ECC40","Lime");
+mapalette.addColor("#FF4136","Red");
+mapalette.addColor("#FF851B","Orange");
+mapalette.addColor("#FFF14E","Yellow");
+mapalette.addColor("rgb(255, 193, 250)","Pink");
+mapalette.addColor("rgb(167, 161, 243)","Purple");
+mapalette.addColor("#DDDDDD","Silver");
+	//var palette = new simplePalette();
+</script>
+</body>
+</html>
