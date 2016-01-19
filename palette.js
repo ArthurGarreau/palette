@@ -12,7 +12,6 @@ function Palette()
 		this.palette.style.width = this.dim + "px";
 		this.palette.style.height = this.dim + "px";
 	this.boxes = [];
-	document.body.appendChild(this.palette);
 }
 /**
  * [addColor description]
