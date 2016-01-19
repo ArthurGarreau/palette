@@ -5,13 +5,14 @@ function isInt(n) {
 
 function Palette()
 {
-	this.dim = 100;//px
-	this.numberColor = 0;
-	this.palette = document.createElement("div");
-		this.palette.className = "Palette"
-		this.palette.style.width = this.dim + "px";
-		this.palette.style.height = this.dim + "px";
-	this.boxes = [];
+	this._dim = 100;//px
+	this._numberColor = 0;
+	this._displayText = true;
+	this._palette = document.createElement("div");
+		this._palette.className = "Palette"
+		this._palette.style.width = this._dim + "px";
+		this._palette.style.height = this._dim + "px";
+	this._boxes = [];
 }
 /**
  * [addColor description]
@@ -23,37 +24,39 @@ Palette.prototype.addColor = function(color, name) {
 	var box = document.createElement("div");
 //a bit of style
 	box.style.backgroundColor = color;
-	box.style.width = this.dim + "px";
-	box.style.height = this.dim + "px";
+	box.style.width = this._dim + "px";
+	box.style.height = this._dim + "px";
 	box.className = "box_palette hvr-shrink";
 //number of boxes + 1
-	this.numberColor++;
+	this._numberColor++;
 //a bit of content
-	if(typeof name !== "undefined")
-		box.innerHTML = "<h3>"+name+"<h3>";
-	else
-		box.innerHTML = "<h3>"+color+"<h3>";
+
+	if(this._displayText)
+	{
+		if(typeof name !== "undefined")
+			box.innerHTML = "<h3>"+name+"<h3>";
+		else
+			box.innerHTML = "<h3>"+color+"<h3>";
+	}
 //a bit of calcul to have a nice display
-	var sqrtSize = this.numberColor != 0 ? Math.sqrt(this.numberColor) : 0,
+	var sqrtSize = this._numberColor != 0 ? Math.sqrt(this._numberColor) : 0,
 			sqrtSizeFloor = Math.floor(sqrtSize);
-	console.log("sqrtSize",sqrtSize);
-	if(sqrtSizeFloor != 0 && this.numberColor != 1)
+	if(sqrtSizeFloor != 0 && this._numberColor != 1)
 	{
 		if(isInt(sqrtSize))
 		{
-			this.palette.style.width = sqrtSize*this.dim + "px";
-			this.palette.style.height = sqrtSize*this.dim + "px";
+			this._palette.style.width = sqrtSize*this._dim + "px";
+			this._palette.style.height = sqrtSize*this._dim + "px";
 		}
 		else
 		{
-			console.log("sqrt rééeeeeel", sqrtSizeFloor);
 			var nouvNombre = sqrtSizeFloor;
-			while(nouvNombre*sqrtSizeFloor<this.numberColor)
+			while(nouvNombre*sqrtSizeFloor<this._numberColor)
 			{
 				nouvNombre++;
 			}
-			this.palette.style.width = nouvNombre*this.dim + "px";
-			this.palette.style.height = sqrtSizeFloor*this.dim + "px";
+			this._palette.style.width = nouvNombre*this._dim + "px";
+			this._palette.style.height = sqrtSizeFloor*this._dim + "px";
 		}
 	}
 	//--------------
@@ -61,12 +64,27 @@ Palette.prototype.addColor = function(color, name) {
 	var supthis = this;
 	box.addEventListener('click',function(){
 		supthis.click(color,name);//allow user to implement his own behavior
-		console.log("bob");
 	},false);
 //append to the palette
-	this.palette.appendChild(box);
+	this._palette.appendChild(box);
 };
-
+/**
+ * [appendTo allow to insert the palette into the element parent]
+ * @param  {[DOM object]} parent [element in which the palette will be inserted]
+ */
 Palette.prototype.appendTo = function(parent) {
-	parent.appendChild(this.palette);
+	parent.appendChild(this._palette);
 };
+/**
+ * [dim allow user to safely change the dimension of the color boxes]
+ * @param  {[int]} dim
+ */
+Palette.prototype.dim = function(dim) {
+	if(isInt(dim))
+	{
+		if(dim > 20)
+			this._dim = dim;
+		else
+			this._dim = 20;
+	}
+}

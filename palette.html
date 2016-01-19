@@ -13,7 +13,10 @@
 <script src="./palette.js"></script>
 <script type="text/javascript">
 Palette.prototype.click = function(color,name) {
-	document.getElementById('colorClicked').innerText = name + " " + color;
+	if(typeof name !== "undefined")
+		document.getElementById('colorClicked').innerText = name + " " + color;
+	else
+		document.getElementById('colorClicked').innerText = color;
 };
 
 var palette = new Palette();
