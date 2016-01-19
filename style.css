@@ -1,0 +1,79 @@
+.Palette{
+	box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+	color: rgba(0,0,0,0.84);
+	background-color: #333;
+}
+.box_palette
+{
+	display: inline-block;
+	line-height:0px;
+	float:left;
+	margin:0px;
+	padding: 0px;
+}
+.box_palette > h3
+{
+	color:rgb(50,50,50);
+	margin-left: 5px;
+	font-family: avenir,'avenir next',helvetica,arial,sans-serif;
+}
+.box_palette:hover h3
+{
+	color:white;
+}
+/*-----------*/
+/*
+http://clrs.cc/
+http://www.materialpalette.com
+*/
+.aqua{
+	background-color: #7FDBFF;
+}
+.teal{
+	background-color: #39CCCC;
+}
+.lime{
+	background-color: rgb(1, 255, 112);
+}
+.green{
+	background-color: #2ECC40;
+}
+.yellow{
+	background-color: #FFF14E;
+}
+.purple{
+	background-color: rgb(167, 161, 243);
+}
+.orange{
+	background-color: #FF851B;
+}
+.red{
+	background-color: #FF4136;
+}
+.pink{
+	background-color: rgb(255, 193, 250);
+}
+.silver{
+	background-color: #DDDDDD;
+}
+
+
+/* Shrink https://github.com/IanLunn/Hover/blob/master/css/hover.css*/
+.hvr-shrink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
