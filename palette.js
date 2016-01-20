@@ -34,9 +34,9 @@ Palette.prototype.addColor = function(color, name) {
 	if(this._displayText)
 	{
 		if(typeof name !== "undefined")
-			box.innerHTML = "<h3>"+name+"<h3>";
+			box.innerHTML = "<h3>"+name+"</h3>";
 		else
-			box.innerHTML = "<h3>"+color+"<h3>";
+			box.innerHTML = "<h3>"+color+"</h3>";
 	}
 //a bit of calcul to have a nice display
 	var sqrtSize = this._numberColor != 0 ? Math.sqrt(this._numberColor) : 0,
